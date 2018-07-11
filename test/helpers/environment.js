@@ -1,7 +1,9 @@
+const port = 15000
 const environments = {
   dev: {
     name: 'DEV',
-    serviceUrl: 'http://localhost:15000'
+    port: 15000,
+    serviceUrl: `http://localhost:${port}/`
   },
   production: {
     name: 'PRODUCTION',
