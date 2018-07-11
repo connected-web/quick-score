@@ -14,14 +14,14 @@ describe(`Quick Score Toggle Items [${environment.name}]`, () => {
   })
 
   it(`should display an item to toggle`, async () => {
-    const title = await nightmare
+    const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
       .screenshot(screenshotPath(this))
-      .evaluate(() => document.querySelector('h1').textContent)
+      .evaluate(() => document.querySelector('.toggle.option').textContent)
       .end()
       .catch(dream)
 
-    expect(title).to.equal('Quick Score')
+    expect(actual).to.equal('Option 1')
   })
 
   it(`should allow a user to select an unselected item`)
