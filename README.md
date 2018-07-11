@@ -2,6 +2,12 @@
 
 A web based scoring tool for quickly scoring things based on lists.
 
+## Hosting
+
+The latest version of the tool can be found at:
+
+-   <https://connected-web.github.io/quick-score/>
+
 ## Intent
 
 The tool should:
@@ -15,25 +21,33 @@ The tool should:
 
 ## Use cases
 
-The tool should support the following use cases:
+The tool should work for a variety of use cases, such as recruitment:
 
--   `Reviewing CVs for evidence of particular skills or experience.`
+```
+Reviewing CVs for evidence of particular skills or experience.
+```
 
--   `Assessment of a board game for accessibility based on components.`
+Board game accessibility:
+```
+Assessment of a board game for accessibility based on components.
+```
 
--   `Review a film based on common characteristics.`
+Film reviews:
+```
+Review a film based on common characteristics.
+```
 
 ## Milestones
 
-| Icon   | Stage                               |
-| ------ | ----------------------------------- |
-| :boom: | Hosted on an web accessible URL     |
-| :boom: | Toggleable score item               |
-| :boom: | Realtime score update               |
-| :boom: | Multiple score items                |
-| :boom: | Multiple score items in categories  |
-| :boom: | Categorised scoring                 |
-| :boom: | Preconfigured skills survey         |
-| :boom: | Preconfigured board game survey     |
-| :boom: | Preconfigured film survey           |
-| :boom: | Support for configurable weightings |
+| Icon               | Stage                               |
+| ------------------ | ----------------------------------- |
+| :heavy_check_mark: | Hosted on an web accessible URL     |
+| :boom:             | Toggleable score item               |
+| :boom:             | Realtime score update               |
+| :boom:             | Multiple score items                |
+| :boom:             | Multiple score items in categories  |
+| :boom:             | Categorised scoring                 |
+| :boom:             | Preconfigured skills survey         |
+| :boom:             | Preconfigured board game survey     |
+| :boom:             | Preconfigured film survey           |
+| :boom:             | Support for configurable weightings |
