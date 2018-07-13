@@ -10,11 +10,11 @@ describe(`Quick Score Screenshots [${environment.name}]`, () => {
     nightmare = Nightmare()
   })
 
-  it(`initial state of the application`, async () => {
+  it(`initial state of the application`, () => {
     return nightmare
       .goto(`${environment.serviceUrl}`)
       .screenshot(screenshotPath(this))
       .end()
       .catch(dreamCatcher)
-  })
+  }).timeout(5000)
 })

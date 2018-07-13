@@ -21,8 +21,18 @@ describe(`Quick Score Toggle Items [${environment.name}]`, () => {
       .catch(dream)
 
     expect(actual).to.equal('Option 1')
-  }).timeout(5000);
+  }).timeout(5000)
 
-  it(`should allow a user to select an unselected item`)
+  it(`should allow a user to select an unselected item`, async () => {
+    const actual = await nightmare
+      .goto(`${environment.serviceUrl}`)
+      .click('button.toggle.option')
+      .evaluate(() => document.querySelector('button.toggle.option').className)
+      .end()
+      .catch(dream)
+
+    expect(actual).to.contain('selected')
+  }).timeout(5000)
+
   it(`should allow a user to deselect a selected item`)
 })
