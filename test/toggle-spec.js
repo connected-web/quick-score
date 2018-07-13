@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const Nightmare = require('nightmare')
 const environment = require('./helpers/environment')
-const screenshotPath = require('./helpers/screenshotPath')
+const dreamCatcher = require('./helpers/dreamCatcher')
 
 function dream(vision) {
   console.error('[Nightmare] Disturbed by', vision)
@@ -16,7 +16,6 @@ describe(`Quick Score Toggle Items [${environment.name}]`, () => {
   it(`should display an item to toggle`, async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
-      .screenshot(screenshotPath(this))
       .evaluate(() => document.querySelector('.toggle.option').textContent)
       .end()
       .catch(dream)
