@@ -8,19 +8,47 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
   <title>Quick Score</title>
+
+  <style>
+    .options {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 0 4px 0;
+    }
+    .options > button {
+      margin: 4px 0;
+    }
+    .container {
+      background: #FBFBFB;
+      border-left: 4px solid #EEE;
+      border-right: 4px solid #EEE;
+      overflow: hidden;
+    }
+    .container.app {
+      text-align: center;
+    }
+    .container.footer {
+      text-align: center;
+    }
+  </style>
+
 </head>
 
 <body>
-  <div class="container">
+  <div class="container intro">
     <h1>Quick Score</h1>
     <p>A web based scoring tool for quickly scoring things based on lists.</p>
-
-    <div class="btn-group-vertical">
+  </div>
+  <div class="container app">
+    <div class="btn-group-vertical options">
       <button type="button" class="btn btn-secondary toggle option">Option 1</button>
       <button type="button" class="btn btn-secondary toggle option">Option 2</button>
       <button type="button" class="btn btn-secondary toggle option">Option 3</button>
       <button type="button" class="btn btn-secondary toggle option">Option 4</button>
     </div>
+  </div>
+  <div class="container footer">
+    <p>Source code available on <a href="https://github.com/connected-web/quick-score" class="source link">github.com : connected-web/quick-score</a></p>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
