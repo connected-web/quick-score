@@ -42,7 +42,7 @@ Review a film based on common characteristics.
 | Icon               | Stage                               |
 | ------------------ | ----------------------------------- |
 | :heavy_check_mark: | Hosted on an web accessible URL     |
-| :boom:             | Toggleable score item               |
+| :heavy_check_mark: | Toggleable score item               |
 | :boom:             | Realtime score update               |
 | :boom:             | Multiple score items                |
 | :boom:             | Multiple score items in categories  |
