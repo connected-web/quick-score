@@ -10,7 +10,7 @@
   <title>Quick Score</title>
 
   <style>
-    .options {
+    .options, .score {
       width: 100%;
       max-width: 800px;
       margin: 0 0 4px 0;
@@ -32,6 +32,9 @@
     }
     .selected {
     }
+    .score, .option {
+      font-size: 180%;
+    }
   </style>
 </head>
 
@@ -42,13 +45,17 @@
   </div>
   <div class="container app">
     <div class="btn-group-vertical options">
-      <button type="button" class="btn toggle option">Option 1</button>
-      <button type="button" class="btn toggle option">Option 2</button>
-      <button type="button" class="btn toggle option">Option 3</button>
-      <button type="button" class="btn toggle option">Option 4</button>
+      <button type="button" class="btn toggle option" data-value="1">Option 1</button>
+      <button type="button" class="btn toggle option" data-value="1">Option 2</button>
+      <button type="button" class="btn toggle option" data-value="1">Option 3</button>
+      <button type="button" class="btn toggle option" data-value="1">Option 4</button>
     </div>
   </div>
   <div class="container footer">
+    <h3>Totals</h3>
+    <button type="button" class="btn btn-primary score panel">
+      Overall <span class="badge badge-light">0</span>
+    </button>
     <p>Source code available on <a href="https://github.com/connected-web/quick-score" class="source link">github.com : connected-web/quick-score</a></p>
   </div>
 
@@ -57,10 +64,17 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
+    const model = {
+      score: 0
+    }
     $(() => {
       $buttons = $('button.toggle.option').click((ev) => {
-        $(ev.target).toggleClass('selected').toggleClass('btn-primary')
-        console.log('Text', $(ev.target))
+        $target = $(ev.target)
+        $target.toggleClass('selected').toggleClass('btn-primary')
+        console.log('Text', $(ev.target), 'selected')
+        model.score = $('.selected').length
+
+        $scorePanel = $('.score.panel > .badge').text(model.score)
       })
     })
   </script>
