@@ -35,4 +35,18 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
 
     expect(actual).to.equal('Overall 1')
   }).timeout(5000)
+
+
+  it(`should score multiple items after their selection state has changed`, async () => {
+    const raw = await nightmare
+      .goto(`${environment.serviceUrl}`)
+      .click('button.toggle.option:nth-of-type(2)')
+      .click('button.toggle.option:nth-of-type(3)')
+      .evaluate(() => document.querySelector('.score.panel').textContent)
+      .end()
+      .catch(dream)
+    const actual = (raw + '').trim()
+
+    expect(actual).to.equal('Overall 2')
+  }).timeout(5000)
 })
