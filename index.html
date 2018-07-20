@@ -44,9 +44,7 @@
     <h1>Quick Score</h1>
     <p>A web based scoring tool for quickly scoring things based on lists.</p>
   </div>
-  <div class="container app">
-    <div class="btn-group-vertical options"></div>
-  </div>
+  <div class="container app"></div>
   <div class="container footer">
     <h3>Totals</h3>
     <div class="alert alert-primary score panel">
@@ -62,15 +60,32 @@
   <script type="text/javascript">
     const model = {
       score: 0,
-      options: ['Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming']
+      categories: [
+        {
+          title: 'Engineering Practice',
+          options: ['Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming']
+        }
+      ]
     }
     $(() => {
-      $optionGroup = $('.options')
-      model.options.map((optionText) => {
-        let $option = $(`<button type="button" class="btn toggle option" data-value="1">${optionText}</button>`)
-        $option.click(selectOption)
-        $optionGroup.append($option)
-      })
+      $appContainer = $('.container.app')
+      model.categories.forEach(renderCategory)
+
+      function renderCategory(category) {
+        $categoryTitle = $(`<h3 class="category title">${category.title}</h3>`)
+        $appContainer.append($categoryTitle)
+        renderOptions(category.options)
+      }
+
+      function renderOptions(options) {
+        $optionGroup = $(`<div class="btn-group-vertical options"></div>`)
+        options.forEach((optionText) => {
+          let $option = $(`<button type="button" class="btn toggle option" data-value="1">${optionText}</button>`)
+          $option.click(selectOption)
+          $optionGroup.append($option)
+        })
+        $appContainer.append($optionGroup)
+      }
 
       function selectOption(ev) {
         $target = $(ev.target)
