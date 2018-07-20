@@ -45,12 +45,7 @@
     <p>A web based scoring tool for quickly scoring things based on lists.</p>
   </div>
   <div class="container app">
-    <div class="btn-group-vertical options">
-      <button type="button" class="btn toggle option" data-value="1">Option 1</button>
-      <button type="button" class="btn toggle option" data-value="1">Option 2</button>
-      <button type="button" class="btn toggle option" data-value="1">Option 3</button>
-      <button type="button" class="btn toggle option" data-value="1">Option 4</button>
-    </div>
+    <div class="btn-group-vertical options"></div>
   </div>
   <div class="container footer">
     <h3>Totals</h3>
@@ -66,17 +61,27 @@
 
   <script type="text/javascript">
     const model = {
-      score: 0
+      score: 0,
+      options: ['Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming']
     }
     $(() => {
-      $buttons = $('button.toggle.option').click((ev) => {
+      $optionGroup = $('.options')
+      model.options.map((optionText) => {
+        let $option = $(`<button type="button" class="btn toggle option" data-value="1">${optionText}</button>`)
+        $option.click(selectOption)
+        $optionGroup.append($option)
+      })
+
+      function selectOption(ev) {
         $target = $(ev.target)
         $target.toggleClass('selected').toggleClass('btn-primary')
-        console.log('Text', $(ev.target), 'selected')
-        model.score = $('.selected').length
+        updateScore()
+      }
 
+      function updateScore() {
+        model.score = $('.selected').length
         $scorePanel = $('.score.panel > .badge').text(model.score)
-      })
+      }
     })
   </script>
 </body>
