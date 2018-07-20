@@ -43,7 +43,7 @@ Review a film based on common characteristics.
 | ------------------ | ----------------------------------- |
 | :heavy_check_mark: | Hosted on an web accessible URL     |
 | :heavy_check_mark: | Toggleable score item               |
-| :boom:             | Realtime score update               |
+| :heavy_check_mark: | Realtime score update               |
 | :boom:             | Multiple score items                |
 | :boom:             | Multiple score items in categories  |
 | :boom:             | Categorised scoring                 |
