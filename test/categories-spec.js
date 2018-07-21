@@ -13,7 +13,7 @@ describe(`Quick Score Categories [${environment.name}]`, () => {
     nightmare = Nightmare()
   })
 
-  it(`should display a heading above the category`, async () => {
+  it(`should display a heading above the category with a score`, async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
       .evaluate(() => document.querySelector('.category.title').textContent)
@@ -21,17 +21,17 @@ describe(`Quick Score Categories [${environment.name}]`, () => {
       .catch(dream)
     const actual = (raw + '').trim()
 
-    expect(actual).to.equal('Engineering Practice')
+    expect(actual).to.equal('Engineering Practice 0')
   }).timeout(5000)
 
-  it(`should have multiple categories with separate headings`, async () => {
+  it(`should have multiple categories with a separate heading and score`, async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
-      .evaluate(() => document.querySelector('.category.title:nth-of-type(2)').textContent)
+      .evaluate(() => Array.from(document.querySelectorAll('.category.title')).map(el => el.textContent).join(', '))
       .end()
       .catch(dream)
     const actual = (raw + '').trim()
 
-    expect(actual).to.equal('Communication')
+    expect(actual).to.equal('Engineering Practice 0, Communication 0')
   }).timeout(5000)
 })

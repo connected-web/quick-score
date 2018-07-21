@@ -76,7 +76,7 @@
       model.categories.forEach(renderCategory)
 
       function renderCategory(category) {
-        $categoryTitle = $(`<h3 class="category title">${category.title}</h3>`)
+        $categoryTitle = $(`<div class="alert alert-primary category title score panel">${category.title} <span class="badge badge-light">0</span></div>`)
         $appContainer.append($categoryTitle)
         renderOptions(category.options)
       }

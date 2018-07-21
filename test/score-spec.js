@@ -16,7 +16,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
   it(`should display a score panel`, async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
-      .evaluate(() => document.querySelector('.score.panel').textContent)
+      .evaluate(() => document.querySelector('.score.panel:last-of-type').textContent)
       .end()
       .catch(dream)
     const actual = (raw + '').trim()
@@ -28,7 +28,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option')
-      .evaluate(() => document.querySelector('.score.panel').textContent)
+      .evaluate(() => document.querySelector('.score.panel:last-of-type').textContent)
       .end()
       .catch(dream)
     const actual = (raw + '').trim()
@@ -42,7 +42,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option:nth-of-type(2)')
       .click('button.toggle.option:nth-of-type(3)')
-      .evaluate(() => document.querySelector('.score.panel').textContent)
+      .evaluate(() => document.querySelector('.score.panel:last-of-type').textContent)
       .end()
       .catch(dream)
     const actual = (raw + '').trim()
