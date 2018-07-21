@@ -2,7 +2,7 @@ const zp = require('./zeropad')
 
 let count = 0
 
-module.exports = (context) => {
+module.exports = (name) => {
   count++
-  return `./test/screenshots/toggle-spec-${zp(count)}.png`
+  return `./test/screenshots/${zp(count)}-${name}.png`
 }
