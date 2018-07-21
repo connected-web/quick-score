@@ -23,4 +23,15 @@ describe(`Quick Score Categories [${environment.name}]`, () => {
 
     expect(actual).to.equal('Engineering Practice')
   }).timeout(5000)
+
+  it(`should have multiple categories with separate headings`, async () => {
+    const raw = await nightmare
+      .goto(`${environment.serviceUrl}`)
+      .evaluate(() => document.querySelector('.category.title:nth-of-type(2)').textContent)
+      .end()
+      .catch(dream)
+    const actual = (raw + '').trim()
+
+    expect(actual).to.equal('Communication')
+  }).timeout(5000)
 })
