@@ -46,7 +46,7 @@ Review a film based on common characteristics.
 | :heavy_check_mark: | Realtime score update               |
 | :heavy_check_mark: | Multiple score items                |
 | :heavy_check_mark: | Multiple score items in categories  |
-| :boom:             | Categorised scoring                 |
+| :heavy_check_mark: | Categorised scoring                 |
 | :boom:             | Preconfigured skills survey         |
 | :boom:             | Preconfigured board game survey     |
 | :boom:             | Preconfigured film survey           |
