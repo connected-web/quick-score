@@ -47,7 +47,7 @@
   <div class="container app"></div>
   <div class="container footer">
     <h3>Totals</h3>
-    <div class="alert alert-primary score panel">
+    <div class="alert alert-primary total score panel">
       Overall <span class="badge badge-light">0</span>
     </div>
     <p>Source code available on <a href="https://github.com/connected-web/quick-score" class="source link">github.com : connected-web/quick-score</a></p>
@@ -59,15 +59,17 @@
 
   <script type="text/javascript">
     const model = {
-      score: 0,
+      totalScore: 0,
       categories: [
         {
           title: 'Engineering Practice',
-          options: ['Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming']
+          options: ['Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming'],
+          score: 0
         },
         {
           title: 'Communication',
-          options: ['Clear', 'Concise', 'Highlighting key facts', 'Key skills', 'Supporting evidence']
+          options: ['Clear', 'Concise', 'Highlighting key facts', 'Key skills', 'Supporting evidence'],
+          score: 0
         }
       ]
     }
@@ -77,29 +79,31 @@
 
       function renderCategory(category) {
         $categoryTitle = $(`<div class="alert alert-primary category title score panel">${category.title} <span class="badge badge-light">0</span></div>`)
+        category.$categoryTitle = $categoryTitle
         $appContainer.append($categoryTitle)
-        renderOptions(category.options)
+        category.$optionGroup = renderOptions(category)
       }
 
-      function renderOptions(options) {
+      function renderOptions(category) {
         $optionGroup = $(`<div class="btn-group-vertical options"></div>`)
-        options.forEach((optionText) => {
+        category.options.forEach((optionText) => {
           let $option = $(`<button type="button" class="btn toggle option" data-value="1">${optionText}</button>`)
-          $option.click(selectOption)
+          $option.click((ev) => {
+            $target = $(ev.target)
+            $target.toggleClass('selected').toggleClass('btn-primary')
+            category.score = $('.selected', category.$optionGroup).length
+            $('.badge', category.$categoryTitle).text(category.score)
+            updateScores()
+          })
           $optionGroup.append($option)
         })
         $appContainer.append($optionGroup)
+        return $optionGroup
       }
 
-      function selectOption(ev) {
-        $target = $(ev.target)
-        $target.toggleClass('selected').toggleClass('btn-primary')
-        updateScore()
-      }
-
-      function updateScore() {
-        model.score = $('.selected').length
-        $scorePanel = $('.score.panel > .badge').text(model.score)
+      function updateScores() {
+        model.totalScore = $('.selected').length
+        $scorePanel = $('.total.score.panel > .badge').text(model.totalScore)
       }
     })
   </script>
