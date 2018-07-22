@@ -49,4 +49,27 @@ describe(`Quick Score Skills Survey [${environment.name}]`, () => {
     expect(actual).to.contain('Engineering Practice 7')
     expect(actual).to.contain('Overall 7')
   }).timeout(5000)
+
+  it(`should allow a user to score up to 9 points for delivery`, async () => {
+    const actual = await nightmare
+      .goto(`${environment.serviceUrl}`)
+      // 'Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming'
+      .click('button[data-text="Complete delivery of a small project"]')
+      .click('button[data-text="Regular delivery over 1 year period"]')
+      .click('button[data-text="Scrum team"]')
+      .click('button[data-text="Daily standups"]')
+      .click('button[data-text="Kanban board"]')
+      .click('button[data-text="Story based work"]')
+      .click('button[data-text="Estimation technique"]')
+      .click('button[data-text="Collaborative prioritisation"]')
+      .click('button[data-text="Retrospective improvement"]')
+      .evaluate(() => Array.from(document.querySelectorAll('.score.panel')).map(el => el.textContent.trim()).join(', '))
+      .end()
+      .catch(dream)
+
+    expect(actual).to.contain('Communication 0')
+    expect(actual).to.contain('Engineering Practice 0')
+    expect(actual).to.contain('Delivery 9')
+    expect(actual).to.contain('Overall 9')
+  }).timeout(5000)
 })
