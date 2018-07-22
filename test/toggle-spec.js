@@ -20,7 +20,7 @@ describe(`Quick Score Toggle Items [${environment.name}]`, () => {
       .end()
       .catch(dream)
 
-    expect(actual).to.equal('Unit Testing')
+    expect(actual).to.equal('Clearly written')
   }).timeout(5000)
 
   it(`should allow a user to select an unselected item`, async () => {

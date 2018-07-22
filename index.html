@@ -60,15 +60,15 @@
   <script type="text/javascript">
     const model = {
       totalScore: 0,
-      categories: [
+      categories: [,
         {
-          title: 'Engineering Practice',
-          options: ['Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming'],
+          title: 'Communication',
+          options: ['Clearly written', 'Concise points', 'Highlighting key facts', 'Key skills', 'Supporting evidence'],
           score: 0
         },
         {
-          title: 'Communication',
-          options: ['Clear', 'Concise', 'Highlighting key facts', 'Key skills', 'Supporting evidence'],
+          title: 'Engineering Practice',
+          options: ['Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming'],
           score: 0
         }
       ]
@@ -87,7 +87,7 @@
       function renderOptions(category) {
         $optionGroup = $(`<div class="btn-group-vertical options"></div>`)
         category.options.forEach((optionText) => {
-          let $option = $(`<button type="button" class="btn toggle option" data-value="1">${optionText}</button>`)
+          let $option = $(`<button type="button" class="btn toggle option" data-text="${optionText}" data-value="1">${optionText}</button>`)
           $option.click((ev) => {
             $target = $(ev.target)
             $target.toggleClass('selected').toggleClass('btn-primary')

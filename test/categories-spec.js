@@ -21,7 +21,7 @@ describe(`Quick Score Categories [${environment.name}]`, () => {
       .catch(dream)
     const actual = (raw + '').trim()
 
-    expect(actual).to.equal('Engineering Practice 0')
+    expect(actual).to.equal('Communication 0')
   }).timeout(5000)
 
   it(`should have multiple categories with a separate heading and score`, async () => {
@@ -32,19 +32,22 @@ describe(`Quick Score Categories [${environment.name}]`, () => {
       .catch(dream)
     const actual = (raw + '').trim()
 
-    expect(actual).to.equal('Engineering Practice 0, Communication 0')
+    expect(actual).to.contain('Engineering Practice 0')
+    expect(actual).to.contain('Communication 0')
   }).timeout(5000)
 
   it(`should only total up the score for items in the category being toggled`, async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
-      .click('button.toggle.option:nth-of-type(2)')
-      .click('button.toggle.option:nth-of-type(3)')
-      .click('button.toggle.option:nth-of-type(5)')
+      .click('button[data-text="Linting"]')
+      .click('button[data-text="Supporting evidence"]')
+      .click('button[data-text="Automation Pipeline"]')
       .evaluate(() => Array.from(document.querySelectorAll('.score.panel')).map(el => el.textContent.trim()).join(', '))
       .end()
       .catch(dream)
 
-    expect(actual).to.equal('Engineering Practice 2, Communication 1, Overall 3')
+    expect(actual).to.contain('Communication 1')
+    expect(actual).to.contain('Engineering Practice 2')
+    expect(actual).to.contain('Overall 3')
   }).timeout(5000)
 })
