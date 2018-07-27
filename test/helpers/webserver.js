@@ -9,9 +9,8 @@ const appHtml = fs.readFileSync(appHtmlPath, 'utf8')
 
 const app = express()
 
-app.get('/', (req, res) => {
-  res.send(appHtml)
-})
+app.get('/', (req, res) => res.send(appHtml))
+app.get('/data/:file', (req, res) => res.send(fs.readFileSync(path.join(__dirname, '../../data', req.params.file), 'utf8')))
 
 const port = environment.port
 app.listen(port, (err, ok) => {
