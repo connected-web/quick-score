@@ -41,7 +41,8 @@
     }
   </style>
 
-  <script src="data/engineer-skills.js" type="text/javascript"></script>
+  <script src="data/engineer-skills-survey.js" type="text/javascript"></script>
+  <script src="data/film-review-survey.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -63,7 +64,20 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
-    const model = EngineerSkills.create()
+
+    function urlParam(name) {
+      const result = new RegExp('[\?&]' + name + '=([^]*)').exec(window.location.href)
+      return (result || [])[1]
+    }
+
+    const modelKey = urlParam('view')
+    const modelFactories = {
+      EngineerSkillsSurvey,
+      FilmReviewSurvey,
+      default: EngineerSkillsSurvey
+    }
+    const modelFactory = modelFactories[modelKey] || modelFactories.default
+    const model = modelFactory.create()
     $(() => {
       $appContainer = $('.container.app')
       model.categories.forEach(renderCategory)
