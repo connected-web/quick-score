@@ -41,6 +41,7 @@
     }
   </style>
 
+  <script src="data/board-game-survey.js" type="text/javascript"></script>
   <script src="data/engineer-skills-survey.js" type="text/javascript"></script>
   <script src="data/film-review-survey.js" type="text/javascript"></script>
 </head>
@@ -72,10 +73,12 @@
 
     const modelKey = urlParam('view')
     const modelFactories = {
+      BoardGameSurvey,
       EngineerSkillsSurvey,
       FilmReviewSurvey,
       default: EngineerSkillsSurvey
     }
+    
     const modelFactory = modelFactories[modelKey] || modelFactories.default
     const model = modelFactory.create()
     $(() => {

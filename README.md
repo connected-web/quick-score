@@ -1,4 +1,4 @@
-# Quick Score
+|""# Quick Score
 
 A web based scoring tool for quickly scoring things based on lists.
 
@@ -27,7 +27,7 @@ The tool should work for a variety of use cases, such as recruitment:
 Reviewing CVs for evidence of particular skills or experience.
 ```
 
-Board game accessibility:
+Board game accessibility:s
 ```
 Assessment of a board game for accessibility based on components.
 ```
