@@ -47,6 +47,7 @@ describe(`Quick Score Categories [${environment.name}]`, () => {
       .catch(dream)
 
     expect(actual).to.contain('Communication 1')
+    expect(actual).to.contain('Delivery 0')
     expect(actual).to.contain('Engineering Practice 2')
     expect(actual).to.contain('Overall 3')
   }).timeout(5000)

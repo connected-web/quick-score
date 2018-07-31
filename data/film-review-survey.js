@@ -6,7 +6,8 @@
         {
           title: 'Story',
           options: ['Clearly written', 'Predictable', 'Suprises'],
-          score: 0
+          score: 0,
+          weight: 1
         }
       ]
     }

@@ -94,23 +94,32 @@
 
       function renderOptions(category) {
         $optionGroup = $(`<div class="btn-group-vertical options"></div>`)
-        category.options.forEach((optionText) => {
-          let $option = $(`<button type="button" class="btn toggle option" data-text="${optionText}" data-value="1">${optionText}</button>`)
-          $option.click((ev) => {
-            $target = $(ev.target)
-            $target.toggleClass('selected').toggleClass('btn-primary')
-            category.score = $('.selected', category.$optionGroup).length
-            $('.badge', category.$categoryTitle).text(category.score)
-            updateScores()
+        let members = [category.options, category.negations]
+        members.forEach((list, index) => {
+          let sign = index % 2 == 0 ? 1 : -1 // add or subtract from totals
+          let btnColour = index % 2 == 0 ? 'btn-primary' : 'btn-danger'
+          list.forEach((optionText) => {
+            let $option = $(`<button type="button" class="btn toggle option" data-text="${optionText}" data-value="${sign*category.weight}">${optionText}</button>`)
+            $option.click((ev) => {
+              $target = $(ev.target)
+              var state = $target.is('.selected') ? -1 : 1 // direction for change in button state
+              $target.toggleClass('selected').toggleClass(btnColour)
+              category.score += category.weight * state * sign //$('.selected', category.$optionGroup).length
+              $('.badge', category.$categoryTitle).text(category.score)
+              updateScores()
+            })
+            $optionGroup.append($option)
           })
-          $optionGroup.append($option)
         })
         $appContainer.append($optionGroup)
         return $optionGroup
       }
 
       function updateScores() {
-        model.totalScore = $('.selected').length
+        model.totalScore = 0 //$('.selected').length
+        model.categories.forEach(function(element){
+          model.totalScore += element.score
+        })
         $scorePanel = $('.total.score.panel > .badge').text(model.totalScore)
       }
     })
