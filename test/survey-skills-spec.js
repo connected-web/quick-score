@@ -4,7 +4,7 @@ const environment = require('./helpers/environment')
 const dreamCatcher = require('./helpers/dreamCatcher')
 require('./helpers/bootstrapWebserver')
 
-function dream(vision) {
+function dream (vision) {
   console.error('[Nightmare] Disturbed by', vision)
 }
 
@@ -14,7 +14,7 @@ describe(`Quick Score Skills Survey [${environment.name}]`, () => {
     nightmare = Nightmare()
   })
 
-  it(`should allow a user to score up to 5 points for written skills`, async () => {
+  it('should allow a user to score up to 5 points for written skills', async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button[data-text="Clearly written"]')
@@ -31,7 +31,7 @@ describe(`Quick Score Skills Survey [${environment.name}]`, () => {
     expect(actual).to.contain('Overall 5')
   }).timeout(5000)
 
-  it(`should allow a user to score up to 7 points for engineering practice`, async () => {
+  it('should allow a user to score up to 7 points for engineering practice', async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
       // 'Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming'
@@ -51,7 +51,7 @@ describe(`Quick Score Skills Survey [${environment.name}]`, () => {
     expect(actual).to.contain('Overall 7')
   }).timeout(5000)
 
-  it(`should allow a user to score up to 9 points for delivery`, async () => {
+  it('should allow a user to score up to 9 points for delivery', async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
       // 'Unit Testing', 'Automation Pipeline', 'Linting', 'Pair Programming'

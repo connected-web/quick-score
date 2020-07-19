@@ -4,7 +4,7 @@ const environment = require('./helpers/environment')
 const dreamCatcher = require('./helpers/dreamCatcher')
 require('./helpers/bootstrapWebserver')
 
-function dream(vision) {
+function dream (vision) {
   console.error('[Nightmare] Disturbed by', vision)
 }
 
@@ -14,7 +14,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
     nightmare = Nightmare()
   })
 
-  it(`should display a score panel`, async () => {
+  it('should display a score panel', async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
       .evaluate(() => document.querySelector('.score.panel:last-of-type').textContent)
@@ -25,7 +25,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
     expect(actual).to.equal('Overall 0')
   }).timeout(5000)
 
-  it(`should update the score panel when the selection changes`, async () => {
+  it('should update the score panel when the selection changes', async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option')
@@ -37,7 +37,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
     expect(actual).to.equal('Overall 1')
   }).timeout(5000)
 
-  it(`should revert the score when the a selected item is deselected`, async () => {
+  it('should revert the score when the a selected item is deselected', async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option')
@@ -51,7 +51,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
   }).timeout(5000)
 
   // NB this test is position-dependent and it works but ... want a generic maintainable test
-  it(`should score a negative number for a negation-type attribute`, async () => {
+  it('should score a negative number for a negation-type attribute', async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option:nth-of-type(7)')
@@ -63,8 +63,7 @@ describe(`Quick Score Score Panel [${environment.name}]`, () => {
     expect(actual).to.equal('Overall -1')
   }).timeout(5000)
 
-
-  it(`should score multiple items after their selection state has changed`, async () => {
+  it('should score multiple items after their selection state has changed', async () => {
     const raw = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option:nth-of-type(2)')
