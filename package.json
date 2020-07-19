@@ -19,10 +19,12 @@
     "mocha": "^8.0.1",
     "nightmare": "^3.0.1",
     "nodemon": "^1.18.1",
-    "promise-path": "^1.2.6",
-    "standard": "^11.0.1"
+    "promise-path": "^1.2.6"
   },
   "nodemonConfig": {
     "ext": "*.html"
+  },
+  "devDependencies": {
+    "standard": "^14.3.4"
   }
 }
