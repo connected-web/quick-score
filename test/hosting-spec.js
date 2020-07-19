@@ -1,6 +1,7 @@
 const { expect } = require('chai')
 const { fetch } = require('promise-path')
 const environment = require('./helpers/environment')
+require('./helpers/bootstrapWebserver')
 
 describe(`Quick Score Hosting [${environment.name}]`, () => {
   it(`should be hosted on an web accessible URL: ${environment.serviceUrl}`, async () => {

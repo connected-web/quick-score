@@ -3,6 +3,7 @@ const Nightmare = require('nightmare')
 const environment = require('./helpers/environment')
 const screenshotPath = require('./helpers/screenshotPath')
 const dreamCatcher = require('./helpers/dreamCatcher')
+require('./helpers/bootstrapWebserver')
 
 function box (x, y, width, height) {
   return { x, y, width, height }

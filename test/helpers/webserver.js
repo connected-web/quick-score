@@ -3,19 +3,54 @@ const path = require('path')
 const fs = require('fs')
 
 const environment = require('./environment')
+let server
 
-const appHtmlPath = path.join(__dirname, '../../', 'index.html')
-const appHtml = fs.readFileSync(appHtmlPath, 'utf8')
+async function startServer() {
 
-const app = express()
+  let serverStarted, serverError
+  const promise = new Promise((resolve, reject) => {
+    serverStarted = resolve
+    serverError = reject
+  })
 
-app.get('/', (req, res) => res.send(appHtml))
-app.get('/data/:file', (req, res) => res.send(fs.readFileSync(path.join(__dirname, '../../data', req.params.file), 'utf8')))
+  if (!server) {
+    const appHtmlPath = path.join(__dirname, '../../', 'index.html')
+    const appHtml = fs.readFileSync(appHtmlPath, 'utf8')
 
-const port = environment.port
-app.listen(port, (err, ok) => {
-  if (err) {
-    return console.err('[QS Webserver] Unable to start server:', err)
+    const app = express()
+
+    app.get('/', (req, res) => res.send(appHtml))
+    app.get('/data/:file', (req, res) => res.send(fs.readFileSync(path.join(__dirname, '../../data', req.params.file), 'utf8')))
+
+    const port = environment.port
+    server = app.listen(port, (err, ok) => {
+      if (err) {
+        return console.err('[QS Webserver] Unable to start server:', err)
+      }
+      console.log('[QS Webserver] Server started on', `http://localhost:${port}/`)
+      serverStarted()
+    })
+
+    let closeTimeout
+    function close() {
+      if (closeTimeout) {
+        console.log('[QS Webserver] Resetting close timeout')
+        clearTimeout(serverTimeout)
+      }
+      console.log('[QS Webserver] Planning to close in 2s')
+      closeTimeout = setTimeout(() => {
+        console.log('[QS Webserver] Closing server')
+        server.close()
+      }, 2000)
+    }
+
+    await promise
   }
-  console.log('[QS Webserver] Server started on', `http://localhost:${port}/`)
-})
+
+  return Promise.resolve({
+    server,
+    close
+  })
+}
+
+module.exports = startServer
