@@ -3,7 +3,7 @@ const Nightmare = require('nightmare')
 const environment = require('./helpers/environment')
 const dreamCatcher = require('./helpers/dreamCatcher')
 
-function dream(vision) {
+function dream (vision) {
   console.error('[Nightmare] Disturbed by', vision)
 }
 
@@ -13,7 +13,7 @@ describe(`Quick Score Toggle Items [${environment.name}]`, () => {
     nightmare = Nightmare()
   })
 
-  it(`should display an item to toggle`, async () => {
+  it('should display an item to toggle', async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
       .evaluate(() => document.querySelector('.toggle.option').textContent)
@@ -23,7 +23,7 @@ describe(`Quick Score Toggle Items [${environment.name}]`, () => {
     expect(actual).to.equal('Clearly written')
   }).timeout(5000)
 
-  it(`should allow a user to select an unselected item`, async () => {
+  it('should allow a user to select an unselected item', async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option')
@@ -34,7 +34,7 @@ describe(`Quick Score Toggle Items [${environment.name}]`, () => {
     expect(actual).to.contain('selected')
   }).timeout(5000)
 
-  it(`should allow a user to deselect a selected item`,  async () => {
+  it('should allow a user to deselect a selected item', async () => {
     const actual = await nightmare
       .goto(`${environment.serviceUrl}`)
       .click('button.toggle.option')

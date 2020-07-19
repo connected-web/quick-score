@@ -1,5 +1,5 @@
-(function() {
-    const create = () => {
+(function () {
+  const create = () => {
     return {
       totalScore: 0,
       categories: [,
