@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const Nightmare = require('nightmare')
 const environment = require('./helpers/environment')
-const dreamCatcher = require('./helpers/dreamCatcher')
+require('./helpers/dreamCatcher')
 require('./helpers/bootstrapWebserver')
 
 function dream (vision) {

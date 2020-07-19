@@ -2,7 +2,7 @@
   const create = () => {
     return {
       totalScore: 0,
-      categories: [,
+      categories: [
         {
           title: 'Communication',
           options: ['Clearly written', 'Concise points', 'Highlighting key facts', 'Key skills', 'Supporting evidence'],

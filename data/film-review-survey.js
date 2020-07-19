@@ -2,7 +2,7 @@
   const create = () => {
     return {
       totalScore: 0,
-      categories: [,
+      categories: [
         {
           title: 'Story',
           options: ['Clearly written', 'Predictable', 'Suprises'],

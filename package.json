@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./",
-    "test": "mocha --recursive test/*spec.js",
+    "test": "standard && mocha --recursive test/*spec.js",
     "test:production": "cross-env NODE_ENV=production npm test",
     "lint": "standard --fix"
   },
@@ -20,6 +20,9 @@
     "nightmare": "^3.0.1",
     "nodemon": "^1.18.1",
     "promise-path": "^1.2.6"
+  },
+  "standard": {
+    "env": [ "mocha" ]
   },
   "nodemonConfig": {
     "ext": "*.html"

@@ -5,13 +5,24 @@ const fs = require('fs')
 const environment = require('./environment')
 let server
 
-async function startServer() {
-
-  let serverStarted, serverError
+async function startServer () {
+  let serverStarted
   const promise = new Promise((resolve, reject) => {
     serverStarted = resolve
-    serverError = reject
   })
+
+  let closeTimeout
+  function close () {
+    if (closeTimeout) {
+      console.log('[QS Webserver] Resetting close timeout')
+      clearTimeout(closeTimeout)
+    }
+    console.log('[QS Webserver] Planning to close in 2s')
+    closeTimeout = setTimeout(() => {
+      console.log('[QS Webserver] Closing server')
+      server.close()
+    }, 2000)
+  }
 
   if (!server) {
     const appHtmlPath = path.join(__dirname, '../../', 'index.html')
@@ -30,19 +41,6 @@ async function startServer() {
       console.log('[QS Webserver] Server started on', `http://localhost:${port}/`)
       serverStarted()
     })
-
-    let closeTimeout
-    function close() {
-      if (closeTimeout) {
-        console.log('[QS Webserver] Resetting close timeout')
-        clearTimeout(serverTimeout)
-      }
-      console.log('[QS Webserver] Planning to close in 2s')
-      closeTimeout = setTimeout(() => {
-        console.log('[QS Webserver] Closing server')
-        server.close()
-      }, 2000)
-    }
 
     await promise
   }
