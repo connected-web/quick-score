@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon test/helpers/webserver.js",
+    "start": "nodemon ./",
     "test": "mocha --recursive test/*spec.js",
     "test:production": "cross-env NODE_ENV=production npm test",
     "lint": "standard --fix"
